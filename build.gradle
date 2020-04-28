@@ -1,0 +1,124 @@
+apply from: rootProject.file("dependencies.gradle")
+
+allprojects {
+
+}
+
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+
+    version = '1.0.1-SNAPSHOT'
+    group = 'com.paranora'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    buildDir = 'out'
+
+    ext {
+        springVersion = '5.1.4.RELEASE'
+        springBootVersion = '2.1.6.RELEASE'
+        springCloudVersion = '2.1.1.RELEASE'
+        springCloudNewVersion = '2.1.2.RELEASE'
+        springFoxVersion = '2.9.2'
+        fastjsonVersion = '1.2.56'
+        jacksonVersion = '2.9.8'
+        logbackVersion = '1.2.3'
+        slf4jVersion = '1.7.25'
+        redissonVersion = '3.10.4'
+        jedisVersion = '3.0.1'
+        lettuceVersion = '5.1.5.RELEASE'
+        junitVersion = '4.12'
+        sentinelVersion = '1.6.2'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "http://nexus.aist.io/nexus/repository/maven-public/" }
+        maven { url "http://central.maven.org/maven2/" }
+        maven { url "http://repo.spring.io/release" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "http://repo.spring.io/snapshot" }
+        maven { url "https://build.shibboleth.net/nexus/content/repositories/releases/" }
+    }
+
+    dependencies {
+
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                pom {
+                    name = project.name
+                    description = project.name
+                    url = 'http://www.paranora.com'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'paranora'
+                            name = 'paranora'
+                            email = 'paranora@163.com'
+                        }
+                    }
+//                    scm {
+//                        connection = 'scm:git:git://example.com/my-library.git'
+//                        developerConnection = 'scm:git:ssh://example.com/my-library.git'
+//                        url = 'http://example.com/my-library/'
+//                    }
+                }
+                afterEvaluate {
+                    if (project.getPlugins().findPlugin("war"))
+                        from components.web
+                    else
+                        from components.java
+                    groupId project.group
+                    artifactId project.name
+                    version project.version
+                }
+            }
+        }
+        repositories {
+            maven {
+                def releasesRepoUrl = "http://nexus.aist.io/nexus/repository/maven-releasess/"
+                def snapshotsRepoUrl = "http://nexus.aist.io/nexus/repository/maven-snapshots/"
+                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+                credentials {
+                    username 'admin'
+                    password 'admin123'
+                }
+            }
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    task createPom {
+        doLast {
+            pom {
+                project {
+                    inceptionYear '2019'
+                    licenses {
+                        license {
+                            name project.name
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution 'repo'
+                        }
+                    }
+                }
+            }.writeTo("$projectDir/pom.xml")
+        }
+    }
+}
+
+
+
