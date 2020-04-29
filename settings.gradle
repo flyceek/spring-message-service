@@ -1,3 +1,5 @@
 rootProject.name = 'spring-message-trial'
-include 'anicca-alliance'
+include 'spring-msg-service'
+include 'spring-msg-fetcher'
+include 'spring-msg-portal'
 

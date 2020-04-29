@@ -1,6 +1,0 @@
-server:
-  port: 8081
-  address: 10.104.5.38
-  servlet:
-    context-path: /
-
