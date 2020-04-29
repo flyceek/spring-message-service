@@ -31,7 +31,16 @@
 <!--    <logger name="org.springframework.data.redis.cache" level="ERROR"></logger>-->
 <!--    <logger name="org.springframework.beans.TypeConverterDelegate" level="ERROR"></logger>-->
 
-    <logger name=" org.apache.kafka.clients.consumer.internals.Fetcher" level="ERROR"></logger>
+    <Logger name="org.springframework.kafka.test" level="warn"/>
+    <Logger name="org.apache.kafka.clients" level="warn"/>
+    <Logger name="org.apache.kafka.clients.NetworkClient" level="error"/>
+    <Logger name="org.apache.kafka.common.network.Selector" level="error"/>
+    <Logger name="kafka.server.ReplicaFetcherThread" level="error"/>
+    <Logger name="kafka.server.LogDirFailureChannel" level="fatal"/>
+    <Logger name="kafka.server.BrokerMetadataCheckpoint" level="error"/>
+    <Logger name="kafka.utils.CoreUtils$" level="error"/>
+    <Logger name="org.apache.kafka.clients.producer.internals.TransactionManager" level="warn"/>
+    <Logger name="org.apache.zookeeper.server.ZooKeeperServer" level="fatal"/>
 
     <root level="DEBUG">
         <appender-ref ref="STDOUT"/>

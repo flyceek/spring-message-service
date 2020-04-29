@@ -23,7 +23,7 @@ public class TestMain {
     @Test
     public void test() throws InterruptedException {
         for(int i=0;i<5000;i++){
-            kafkaTemplate.send(rongYunMessageTopic, String.format("paranora is king . index {0}",i));;
+            kafkaTemplate.send(rongYunMessageTopic, String.format("paranora is king . index : %s .",i));;
             Thread.sleep(100);
         }
 
