@@ -1,6 +1,5 @@
-package org.paranora.sms.configuration;
+package org.paranora.sms;
 
-import org.paranora.smp.kafka.KafkaSendResultHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

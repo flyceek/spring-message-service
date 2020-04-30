@@ -2,4 +2,5 @@ rootProject.name = 'spring-message-trial'
 include 'spring-msg-service'
 include 'spring-msg-fetcher'
 include 'spring-msg-portal'
+include 'spring-msg-sender'
 

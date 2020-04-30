@@ -11,7 +11,7 @@ subprojects {
     apply plugin: 'maven-publish'
 
     version = '1.0.1-SNAPSHOT'
-    group = 'com.paranora'
+    group = 'org.paranora'
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
     buildDir = 'out'
