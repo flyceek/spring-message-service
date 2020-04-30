@@ -12,7 +12,7 @@ public class KafkaSendResultHandler implements ProducerListener {
 
     @Override
     public void onSuccess(ProducerRecord producerRecord, RecordMetadata recordMetadata) {
-        log.info("send-success : " + producerRecord.toString());
+//        log.info("send-success : " + producerRecord.toString());
     }
 
     @Override

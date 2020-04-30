@@ -1,9 +1,19 @@
 package org.paranora.sms.service;
 
 import org.paranora.sms.entity.KafkaMessage;
+import org.paranora.sms.kafka.KafkaSendResultHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.support.GenericMessage;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class KafkaMessageSenderAbs<T extends KafkaMessage> implements MessageSender<T> {
+    private static final Logger log = LoggerFactory.getLogger(KafkaMessageSenderAbs.class);
+
     protected KafkaTemplate<Integer, String> kafkaTemplate;
     protected MessageConverter converter;
 
@@ -34,11 +44,26 @@ public abstract class KafkaMessageSenderAbs<T extends KafkaMessage> implements M
 
     @Override
     public void send(T message) {
-        kafkaTemplate.send(message.getTopic(), converter.toString(message));
+        GenericMessage msg=buildMessage(message);
+        kafkaTemplate.send(msg);
+        log.info("send-success : " + msg.getPayload());
     }
 
     @Override
     public void sendSync(T message) throws Exception {
-        kafkaTemplate.send(message.getTopic(), converter.toString(message)).get();
+        GenericMessage msg=buildMessage(message);
+        kafkaTemplate.send(msg).get();
+        log.info("send-success : " + msg.getPayload());
+    }
+
+    protected  GenericMessage buildMessage(T message){
+        Map msgMap = new HashMap<>();
+        msgMap.put(KafkaHeaders.TOPIC, message.getTopic());
+        msgMap.put(KafkaHeaders.MESSAGE_KEY, message.getKey());
+        msgMap.put(KafkaHeaders.PARTITION_ID, 0);
+        msgMap.put(KafkaHeaders.TIMESTAMP, System.currentTimeMillis());
+        String msgRaw=converter.toString(message);
+        GenericMessage msg=new GenericMessage(msgRaw,msgMap);
+        return msg;
     }
 }

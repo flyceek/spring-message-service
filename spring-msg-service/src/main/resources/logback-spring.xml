@@ -28,8 +28,11 @@
     <Logger name="kafka.utils.CoreUtils$" level="error"/>
     <Logger name="org.apache.kafka.clients.producer.internals.TransactionManager" level="warn"/>
     <Logger name="org.apache.zookeeper.server.ZooKeeperServer" level="fatal"/>
+    <Logger name="org.springframework.kafka.listener.KafkaMessageListenerContainer" level="error"/>
+    <Logger name="org.springframework.kafka.support.AbstractKafkaHeaderMapper" level="error"/>
+    <Logger name="org.springframework.web" level="error"/>
 
-    <Logger name="org.paranora.sms" level="info"></Logger>
+    <Logger name="org.paranora.sms" level="all"></Logger>
 
     <root level="debug">
         <appender-ref ref="STDOUT"/>
