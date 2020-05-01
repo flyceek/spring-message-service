@@ -18,7 +18,6 @@ public class RongYunKafkaPrivateMessageFetcher extends RongYunKafkaMessageFetche
         message.setContent(URLDecoder.decode(message.getContent(),"UTF-8"));
         String messageStr=message.toString();
         log.info(String.format("fetch rongyun message : \r\n%s",messageStr));
-        Private Private = rongCloud.message.msgPrivate;
         BaseMessage rongyunMessageContent = new BaseMessage() {
             @Override
             public String getType() {
@@ -41,7 +40,7 @@ public class RongYunKafkaPrivateMessageFetcher extends RongYunKafkaMessageFetche
                 .setIsPersisted(1)
                 .setIsCounted(message.getIosCount())
                 .setIsIncludeSender(message.getIsIncludeSender());
-        ResponseResult privateResult = Private.send(rongyunPrivateMessage);
+        ResponseResult privateResult = rongCloud.message.msgPrivate.send(rongyunPrivateMessage);
         log.info(String.format("send rongyun message: \r\n %s \r\nresult : \r\n%s",messageStr,privateResult.toString()));
     }
 }
