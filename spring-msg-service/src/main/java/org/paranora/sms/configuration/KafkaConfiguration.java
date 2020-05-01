@@ -4,6 +4,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.paranora.sms.entity.RongYunGroupKafkaMessage;
 import org.paranora.sms.entity.RongYunPrivateKafkaMessage;
 import org.paranora.sms.entity.RongYunSystemKafkaMessage;
+import org.paranora.sms.kafka.KafkaConsumerAwareListenerErrorHandler;
 import org.paranora.sms.kafka.KafkaProducerResultHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
+import org.springframework.kafka.listener.ConsumerAwareListenerErrorHandler;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.ProducerListener;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
@@ -21,6 +23,11 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 @Configuration
 @Profile({"kafka"})
 public class KafkaConfiguration {
+
+    @Bean
+    public ConsumerAwareListenerErrorHandler kafkaConsumerAwareListenerErrorHandler() {
+        return new KafkaConsumerAwareListenerErrorHandler();
+    }
 
     @Configuration
     @EnableKafka
