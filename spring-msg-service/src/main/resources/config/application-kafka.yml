@@ -1,5 +1,5 @@
 server:
-  port: ${AA_PORT:8082}
+  port: ${AA_PORT:8083}
   servlet:
     context-path: /
 

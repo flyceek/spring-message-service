@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {TestMain.class})
-@ActiveProfiles({"kafka","kafka-rongyun-producer","kafka-rongyun","rongyun"})
+@ActiveProfiles({"kafka","kafka-rongyun-private-message-producer","kafka-rongyun-private-message-service","rongyun"})
 @ComponentScan({"org.paranora.sms"})
 public class TestMain {
 
@@ -21,10 +21,14 @@ public class TestMain {
     @Test
     public void testA(){
 //        for(int i=0;i<2000;i++){
-//            RongYunKafkaMessage message=new RongYunKafkaMessage();
-//            message.setContent("i am paranora , index :"+i);
-//            message.setTopic("rongyun-message");
+//            RongYunPrivateKafkaMessage message=new RongYunPrivateKafkaMessage();
+//            message.setContent(String.format("{\"content\":\"i am paranora . index : %s .\",\"extra\":\"source=and_agency\"}",i));
+//            message.setTopic("paranora-rongyun-private-message");
 //            message.setKey("sigle-message");
+//            message.setObjectName("RC:TxtMsg");
+//            message.setChannelType("PRIVATE");
+//            message.setSenderId("s_021_aa137997");
+//            message.setReceiverIds(new String[]{"u_u100079197"});
 //
 //            messageService.send(message);
 //        }
