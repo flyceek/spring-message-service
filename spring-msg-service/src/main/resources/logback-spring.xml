@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" debug="true">
-    <property name="LOG_DIR" value="${catalina.base}/logs"/>
+    <property name="LOG_DIR" value="${AA_LOG_BASE_DIR}/logs"/>
 
     <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
