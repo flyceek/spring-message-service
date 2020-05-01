@@ -27,7 +27,7 @@ public class KafkaRonYunSystemMessageConsumer {
                                    @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition,
                                    @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
                                    @Header(KafkaHeaders.RECEIVED_TIMESTAMP) long ts,
-                                   Acknowledgment ack) {
+                                   Acknowledgment ack) throws Exception{
         service.fetch(msg);
         ack.acknowledge();
     }
