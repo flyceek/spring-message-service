@@ -21,13 +21,14 @@ public class KafkaRonYunGroupMessageConsumer {
     private MessageService rongYunKafkaGroupMessageService;
 
     @KafkaListener(id="${AA_KAFKA_CLIENT_ID:paranora}",topics = "${AA_KAFKA_TOPIC:rongyun-group-message}", groupId = "${AA_KAFKA_GROUP_ID:paranora-group-message-group}",containerFactory = "kafkaListenerContainerFactory")
-    public void listenGroupMessage(@Payload RongYunGroupKafkaMessage msg,
+    public void listen(@Payload RongYunGroupKafkaMessage msg,
                        @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key,
                        @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition,
                        @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
                        @Header(KafkaHeaders.RECEIVED_TIMESTAMP) long ts,
                        Acknowledgment ack) throws  Exception {
-        rongYunKafkaGroupMessageService.fetch(msg);
-        ack.acknowledge();
+        if(rongYunKafkaGroupMessageService.fetch(msg)) {
+            ack.acknowledge();
+        }
     }
 }

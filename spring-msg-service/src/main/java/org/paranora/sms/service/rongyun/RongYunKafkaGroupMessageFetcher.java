@@ -9,7 +9,8 @@ public class RongYunKafkaGroupMessageFetcher extends RongYunKafkaMessageFetcher<
 
 
     @Override
-    public void fetch(RongYunGroupKafkaMessage message) {
+    public boolean fetch(RongYunGroupKafkaMessage message) {
         log.info(message.toString());
+        return false;
     }
 }

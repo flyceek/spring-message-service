@@ -62,7 +62,7 @@ public class RonYunConfiguration {
     public class RonYunKafkaSystemMessageConfiguration {
 
         @Bean
-        public MessageService rongYunKafkaGroupMessageService(KafkaTemplate<String, RongYunSystemKafkaMessage> kafkaTemplate) {
+        public MessageService rongYunKafkaSystemMessageService(KafkaTemplate<String, RongYunSystemKafkaMessage> kafkaTemplate) {
             RongYunKafkaSystemMessageService service = new RongYunKafkaSystemMessageService();
             service.defaultKafkaTemplate(kafkaTemplate);
             service.defaultRongCloud(rongCloud());

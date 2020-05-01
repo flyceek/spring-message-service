@@ -30,6 +30,7 @@
     <Logger name="org.apache.zookeeper.server.ZooKeeperServer" level="fatal"/>
     <Logger name="org.springframework.kafka.listener.KafkaMessageListenerContainer" level="error"/>
     <Logger name="org.springframework.kafka.support.AbstractKafkaHeaderMapper" level="error"/>
+    <Logger name="org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter" level="error"></Logger>
     <Logger name="org.springframework.web" level="error"/>
 
     <Logger name="org.paranora.sms" level="all"></Logger>

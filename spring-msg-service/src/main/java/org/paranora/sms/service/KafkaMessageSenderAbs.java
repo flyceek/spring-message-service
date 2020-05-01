@@ -38,14 +38,14 @@ public abstract class KafkaMessageSenderAbs<T extends KafkaMessage> implements M
     public void send(T message) {
         Message msg=buildMessage(message);
         kafkaTemplate.send(msg);
-        log.info("send-success : " + msg.toString());
+        log.info("\r\nsend-success : \r\n" + msg.toString());
     }
 
     @Override
     public void sendSync(T message) throws Exception {
         Message msg=buildMessage(message);
         kafkaTemplate.send(msg).get();
-        log.info("send-success : " + msg.toString());
+        log.info("\r\nsend-success : \r\n" + msg.toString());
     }
 
     protected  Message<T> buildMessage(T message){

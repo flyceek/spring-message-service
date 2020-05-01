@@ -43,8 +43,8 @@ public abstract class MessageServiceAbs<T extends Message> implements MessageSer
     }
 
     @Override
-    public void fetch(T message) throws Exception {
-        fetcher.fetch(message);
+    public boolean fetch(T message) throws Exception {
+        return fetcher.fetch(message);
     }
 
 }

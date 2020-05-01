@@ -13,14 +13,14 @@ public class RongYunKafkaPrivateMessageFetcher extends RongYunKafkaMessageFetche
     private static final Logger log = LoggerFactory.getLogger(RongYunKafkaPrivateMessageFetcher.class);
 
     @Override
-    public void fetch(RongYunPrivateKafkaMessage message) throws Exception {
+    public boolean fetch(RongYunPrivateKafkaMessage message) throws Exception {
         message.setContent(URLDecoder.decode(message.getContent(),"UTF-8"));
         String messageStr=message.toString();
-        log.info(String.format("fetch rongyun message : \r\n%s",messageStr));
+        log.info(String.format("\r\nfetch rongyun message : \r\n%s",messageStr));
         BaseMessage rongyunMessageContent = new BaseMessage() {
             @Override
             public String getType() {
-                return message.getChannelType();
+                return message.getObjectName();
             }
 
             @Override
@@ -40,6 +40,11 @@ public class RongYunKafkaPrivateMessageFetcher extends RongYunKafkaMessageFetche
                 .setIsCounted(message.getIosCount())
                 .setIsIncludeSender(message.getIsIncludeSender());
         ResponseResult privateResult = rongCloud.message.msgPrivate.send(rongyunPrivateMessage);
-        log.info(String.format("send rongyun message: \r\n %s \r\nresult : \r\n%s",messageStr,privateResult.toString()));
+        log.info(String.format("\r\nsend rongyun message: \r\n %s \r\nresult : \r\n%s",messageStr,privateResult.toString()));
+        if(privateResult.code==200) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

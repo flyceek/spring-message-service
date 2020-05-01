@@ -2,7 +2,6 @@ package org.paranora.sms.configuration;
 
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.paranora.sms.entity.RongYunGroupKafkaMessage;
-import org.paranora.sms.entity.RongYunKafkaMessage;
 import org.paranora.sms.entity.RongYunPrivateKafkaMessage;
 import org.paranora.sms.entity.RongYunSystemKafkaMessage;
 import org.paranora.sms.kafka.KafkaProducerResultHandler;
@@ -187,6 +186,7 @@ public class KafkaConfiguration {
             ConcurrentKafkaListenerContainerFactory<String, RongYunPrivateKafkaMessage> factory =
                     new ConcurrentKafkaListenerContainerFactory<>();
             factory.setConsumerFactory(consumerFactory());
+            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
             return factory;
         }
     }
@@ -194,7 +194,7 @@ public class KafkaConfiguration {
     @Configuration
     @EnableKafka
     @EnableConfigurationProperties(KafkaProperties.class)
-    @Profile({"kafka-rongyun-private-message-consumer"})
+    @Profile({"kafka-rongyun-group-message-consumer"})
     public class KafkaRongYunGroupMessageConsumerConfiguration {
 
         @Autowired
@@ -213,6 +213,7 @@ public class KafkaConfiguration {
             ConcurrentKafkaListenerContainerFactory<String, RongYunGroupKafkaMessage> factory =
                     new ConcurrentKafkaListenerContainerFactory<>();
             factory.setConsumerFactory(consumerFactory());
+            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
             return factory;
         }
     }
@@ -240,6 +241,7 @@ public class KafkaConfiguration {
             ConcurrentKafkaListenerContainerFactory<String, RongYunSystemKafkaMessage> factory =
                     new ConcurrentKafkaListenerContainerFactory<>();
             factory.setConsumerFactory(consumerFactory());
+            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
             return factory;
         }
     }

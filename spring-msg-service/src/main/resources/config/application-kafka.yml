@@ -21,7 +21,3 @@ spring:
       value-serializer: ${AA_KAFKA_VALUE_SERIALIZER:org.springframework.kafka.support.serializer.JsonDeserializer}
       group-id: ${AA_KAFKA_GROUP_ID:paranora-group}
       client-id: ${AA_KAFKA_CLIENT_ID:paranora}
-
-rongyun:
-  appkey: ${AA_RONGYUN_APPKEY:y745wfm8yoxyv}
-  appSecret: ${AA_RONGYUN_APPSECRET:y9OPwukUF8DMaa}
