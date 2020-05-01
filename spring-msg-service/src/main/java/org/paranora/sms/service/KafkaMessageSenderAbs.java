@@ -53,6 +53,7 @@ public abstract class KafkaMessageSenderAbs<T extends KafkaMessage> implements M
                 .withPayload(message)
                 .setHeader(KafkaHeaders.TOPIC, message.getTopic())
                 .setHeader(KafkaHeaders.MESSAGE_KEY, message.getKey())
+                .setHeader(KafkaHeaders.PARTITION_ID,message.getPartition())
                 .setHeader(KafkaHeaders.TIMESTAMP, System.currentTimeMillis())
                 .build();
         return kafkaMessage;
