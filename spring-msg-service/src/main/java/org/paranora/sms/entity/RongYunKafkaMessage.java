@@ -12,9 +12,38 @@ public abstract class RongYunKafkaMessage extends KafkaMessage implements Serial
     private String iosPushContent;
     private Integer iosCount;
     private Integer isIncludeSender;
+    private Integer IsPersisted;
+    private Integer iosContentAvailable;
+    private Integer verifyBlacklist;
 
     public RongYunKafkaMessage(){
         isIncludeSender=1;
+        IsPersisted=1;
+        verifyBlacklist=0;
+    }
+
+    public Integer getVerifyBlacklist() {
+        return verifyBlacklist;
+    }
+
+    public void setVerifyBlacklist(Integer verifyBlacklist) {
+        this.verifyBlacklist = verifyBlacklist;
+    }
+
+    public Integer getIosContentAvailable() {
+        return iosContentAvailable;
+    }
+
+    public void setIosContentAvailable(Integer iosContentAvailable) {
+        this.iosContentAvailable = iosContentAvailable;
+    }
+
+    public Integer getIsPersisted() {
+        return IsPersisted;
+    }
+
+    public void setIsPersisted(Integer isPersisted) {
+        IsPersisted = isPersisted;
     }
 
     public String getIosPushData() {

@@ -8,12 +8,12 @@ public class RongYunKafkaSystemMessageService extends RongYunKafkaMessageService
 
     @Override
     public void defaultSender() {
-        this.sender=new RongYunKafkaGroupMessageSender();
+        this.sender=new RongYunKafkaSystemMessageSender();
     }
 
     @Override
     public void defaultFetcher() {
-        this.fetcher=new RongYunKafkaGroupMessageFetcher();
+        this.fetcher=new RongYunKafkaSystemMessageFetcher();
     }
 
     @Override

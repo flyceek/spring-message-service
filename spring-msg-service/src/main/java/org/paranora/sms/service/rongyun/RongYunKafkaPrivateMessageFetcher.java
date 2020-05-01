@@ -1,8 +1,8 @@
 package org.paranora.sms.service.rongyun;
 
-import io.rong.messages.BaseMessage;
 import io.rong.models.message.PrivateMessage;
 import io.rong.models.response.ResponseResult;
+import org.paranora.sms.entity.RongYunMessage;
 import org.paranora.sms.entity.RongYunPrivateKafkaMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,19 +15,10 @@ public class RongYunKafkaPrivateMessageFetcher extends RongYunKafkaMessageFetche
     @Override
     public boolean fetch(RongYunPrivateKafkaMessage message) throws Exception {
         message.setContent(URLDecoder.decode(message.getContent(),"UTF-8"));
-        String messageStr=message.toString();
-        log.info(String.format("\r\nfetch rongyun message : \r\n%s",messageStr));
-        BaseMessage rongyunMessageContent = new BaseMessage() {
-            @Override
-            public String getType() {
-                return message.getObjectName();
-            }
+        String messageJson=message.toString();
+        log.info(String.format("\r\nfetch rongyun private message : \r\n%s",messageJson));
 
-            @Override
-            public String toString() {
-                return message.getContent();
-            }
-        };
+        RongYunMessage rongyunMessageContent = new RongYunMessage(message.getObjectName(),message.getContent());
         PrivateMessage rongyunPrivateMessage = new PrivateMessage()
                 .setSenderId(message.getSenderId())
                 .setTargetId(message.getReceiverIds())
@@ -35,13 +26,15 @@ public class RongYunKafkaPrivateMessageFetcher extends RongYunKafkaMessageFetche
                 .setContent(rongyunMessageContent)
                 .setPushContent(message.getIosPushContent())
                 .setPushData(message.getIosPushData())
-                .setVerifyBlacklist(0)
-                .setIsPersisted(1)
+                .setVerifyBlacklist(message.getVerifyBlacklist())
+                .setIsPersisted(message.getIsPersisted())
                 .setIsCounted(message.getIosCount())
-                .setIsIncludeSender(message.getIsIncludeSender());
-        ResponseResult privateResult = rongCloud.message.msgPrivate.send(rongyunPrivateMessage);
-        log.info(String.format("\r\nsend rongyun message: \r\n %s \r\nresult : \r\n%s",messageStr,privateResult.toString()));
-        if(privateResult.code==200) {
+                .setIsIncludeSender(message.getIsIncludeSender())
+                .setContentAvailable(message.getIosContentAvailable());
+        ResponseResult result = rongCloud.message.msgPrivate.send(rongyunPrivateMessage);
+
+        log.info(String.format("\r\nsend rongyun private message: \r\n %s \r\nresult : \r\n%s",messageJson,result.toString()));
+        if(result.code==200) {
             return true;
         } else {
             return false;
