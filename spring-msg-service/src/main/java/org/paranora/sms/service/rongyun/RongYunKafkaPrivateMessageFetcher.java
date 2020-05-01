@@ -1,7 +1,6 @@
 package org.paranora.sms.service.rongyun;
 
 import io.rong.messages.BaseMessage;
-import io.rong.methods.message._private.Private;
 import io.rong.models.message.PrivateMessage;
 import io.rong.models.response.ResponseResult;
 import org.paranora.sms.entity.RongYunPrivateKafkaMessage;
