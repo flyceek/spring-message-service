@@ -1,6 +1,8 @@
 package org.paranora.sms.entity;
 
-public class KafkaMessage extends Message{
+import java.io.Serializable;
+
+public abstract class KafkaMessage extends Message implements Serializable {
     private String topic;
     private String key;
 

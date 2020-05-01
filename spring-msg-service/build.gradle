@@ -32,6 +32,7 @@ dependencies {
     implementation group: 'cn.rongcloud.im', name: 'server-sdk-java', version: '3.1.7'
 
     implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.68'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
 
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion
     testCompile group: 'junit', name: 'junit', version: '4.12'

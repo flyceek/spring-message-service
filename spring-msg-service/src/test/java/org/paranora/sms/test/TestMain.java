@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {TestMain.class})
-@ActiveProfiles({"kafka","kafka-producer","rongyun"})
+@ActiveProfiles({"kafka","kafka-rongyun-producer","kafka-rongyun","rongyun"})
 @ComponentScan({"org.paranora.sms"})
 public class TestMain {
 

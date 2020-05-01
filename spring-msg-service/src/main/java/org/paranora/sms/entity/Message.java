@@ -1,25 +1,27 @@
 package org.paranora.sms.entity;
 
-public class Message {
-    private String sender;
-    private String receiver;
+import java.io.Serializable;
+
+public abstract class Message implements Serializable {
+    private String senderId;
+    private String[] receiverIds;
     private String content;
     private String time;
 
-    public String getSender() {
-        return sender;
+    public String getSenderId() {
+        return senderId;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
     }
 
-    public String getReceiver() {
-        return receiver;
+    public String[] getReceiverIds() {
+        return receiverIds;
     }
 
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
+    public void setReceiverIds(String[] receiverIds) {
+        this.receiverIds = receiverIds;
     }
 
     public String getContent() {

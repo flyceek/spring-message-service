@@ -6,7 +6,6 @@ public abstract class MessageServiceAbs<T extends Message> implements MessageSer
 
     protected MessageSender sender;
     protected MessageFetcher fetcher;
-    protected MessageConverter converter;
 
     public MessageServiceAbs(){
         init();;
@@ -15,7 +14,6 @@ public abstract class MessageServiceAbs<T extends Message> implements MessageSer
     protected void init(){
         defaultSender();
         defaultFetcher();
-        defaultConverter();
     }
 
     public void defaultSender() {
@@ -24,8 +22,6 @@ public abstract class MessageServiceAbs<T extends Message> implements MessageSer
     public void defaultFetcher() {
     }
 
-    public void defaultConverter(){
-    }
 
     public void defaultSender(MessageSender sender) {
         this.sender = sender;
@@ -35,21 +31,6 @@ public abstract class MessageServiceAbs<T extends Message> implements MessageSer
         this.fetcher = fetcher;
     }
 
-    public void defaultConverter(MessageConverter converter){
-        this.converter=converter;
-    }
-
-    public MessageSender getSender() {
-        return sender;
-    }
-
-    public MessageFetcher getFetcher() {
-        return fetcher;
-    }
-
-    public MessageConverter getConverter() {
-        return converter;
-    }
 
     @Override
     public void send(T message) {
@@ -62,17 +43,8 @@ public abstract class MessageServiceAbs<T extends Message> implements MessageSer
     }
 
     @Override
-    public void fetch(T message) {
+    public void fetch(T message) throws Exception {
         fetcher.fetch(message);
     }
 
-    @Override
-    public void fetch(String message) {
-        fetcher.fetch(converter.from(message));
-    }
-
-    @Override
-    public void fetch(byte[] message) {
-        fetcher.fetch(converter.from(message));
-    }
 }

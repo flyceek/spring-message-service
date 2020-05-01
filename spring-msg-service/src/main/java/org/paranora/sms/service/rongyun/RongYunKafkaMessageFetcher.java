@@ -1,19 +1,14 @@
 package org.paranora.sms.service.rongyun;
 
-import io.rong.messages.TxtMessage;
-import io.rong.models.message.PrivateMessage;
+import io.rong.RongCloud;
 import org.paranora.sms.entity.RongYunKafkaMessage;
-import org.paranora.sms.service.MessageFetcher;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.paranora.sms.service.KafkaMessageFetcherAbs;
 
-import java.io.Reader;
+public abstract class RongYunKafkaMessageFetcher<T extends  RongYunKafkaMessage> extends KafkaMessageFetcherAbs<T> {
 
-public class RongYunKafkaMessageFetcher implements MessageFetcher<RongYunKafkaMessage> {
-    private Logger log = LoggerFactory.getLogger(this.getClass());
+    protected RongCloud rongCloud;
 
-    @Override
-    public void fetch(RongYunKafkaMessage message) {
-
+    public void defaultRongCloud(RongCloud rongCloud){
+        this.rongCloud=rongCloud;
     }
 }

@@ -12,12 +12,16 @@ spring:
       buffer-memory: ${AA_KAFKA_BUFFER_MEM:33554432}
       compressionType:  ${AA_KAFKA_COMPRESS_TYPE:none}
       key-serializer: ${AA_KAFKA_KEY_SERIALIZER:org.apache.kafka.common.serialization.StringSerializer}
-      value-serializer: ${AA_KAFKA_VALUE_SERIALIZER:org.apache.kafka.common.serialization.StringSerializer}
+      value-serializer: ${AA_KAFKA_VALUE_SERIALIZER:org.springframework.kafka.support.serializer.JsonSerializer}
     consumer:
       auto-offset-reset: ${AA_KAFKA_AUTO_OFFSET_RESET:latest}
       enable-auto-commit: ${AA_KAFKA_ENABLE_AUTO_COMMIT:false}
       auto-commit-interval: ${AA_KAFKA_AUTO_COMMIT:100}
-      key-serializer: ${AA_KAFKA_KEY_SERIALIZER:org.apache.kafka.common.serialization.StringSerializer}
-      value-serializer: ${AA_KAFKA_VALUE_SERIALIZER:org.apache.kafka.common.serialization.StringSerializer}
+      key-serializer: ${AA_KAFKA_KEY_SERIALIZER:org.apache.kafka.common.serialization.StringDeserializer}
+      value-serializer: ${AA_KAFKA_VALUE_SERIALIZER:org.springframework.kafka.support.serializer.JsonDeserializer}
       group-id: ${AA_KAFKA_GROUP_ID:paranora-group}
       client-id: ${AA_KAFKA_CLIENT_ID:paranora}
+
+rongyun:
+  appkey: ${AA_RONGYUN_APPKEY:y745wfm8yoxyv}
+  appSecret: ${AA_RONGYUN_APPSECRET:y9OPwukUF8DMaa}
