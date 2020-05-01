@@ -165,7 +165,7 @@ public class KafkaConfiguration {
         public ConcurrentKafkaListenerContainerFactory<Integer, String> kafkaListenerContainerFactory() {
             ConcurrentKafkaListenerContainerFactory<Integer, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
             factory.setConsumerFactory(consumerFactory());
-            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
+            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
             return factory;
         }
 
@@ -193,7 +193,7 @@ public class KafkaConfiguration {
             ConcurrentKafkaListenerContainerFactory<String, RongYunPrivateKafkaMessage> factory =
                     new ConcurrentKafkaListenerContainerFactory<>();
             factory.setConsumerFactory(consumerFactory());
-            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
+            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
             return factory;
         }
     }
@@ -220,7 +220,7 @@ public class KafkaConfiguration {
             ConcurrentKafkaListenerContainerFactory<String, RongYunGroupKafkaMessage> factory =
                     new ConcurrentKafkaListenerContainerFactory<>();
             factory.setConsumerFactory(consumerFactory());
-            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
+            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
             return factory;
         }
     }
@@ -248,7 +248,7 @@ public class KafkaConfiguration {
             ConcurrentKafkaListenerContainerFactory<String, RongYunSystemKafkaMessage> factory =
                     new ConcurrentKafkaListenerContainerFactory<>();
             factory.setConsumerFactory(consumerFactory());
-            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
+            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
             return factory;
         }
     }
