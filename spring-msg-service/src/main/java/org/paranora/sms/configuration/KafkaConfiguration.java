@@ -1,11 +1,9 @@
 package org.paranora.sms.configuration;
 
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.paranora.sms.entity.RongYunGroupKafkaMessage;
 import org.paranora.sms.entity.RongYunPrivateKafkaMessage;
 import org.paranora.sms.entity.RongYunSystemKafkaMessage;
-import org.paranora.sms.kafka.KafkaConsumerAwareListenerErrorHandler;
-import org.paranora.sms.kafka.KafkaProducerResultHandler;
+import org.paranora.sms.kafka.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -18,11 +16,13 @@ import org.springframework.kafka.core.*;
 import org.springframework.kafka.listener.ConsumerAwareListenerErrorHandler;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.ProducerListener;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 @Configuration
 @Profile({"kafka"})
 public class KafkaConfiguration {
+
+    @Autowired
+    private KafkaProperties properties;
 
     @Bean
     public ConsumerAwareListenerErrorHandler kafkaConsumerAwareListenerErrorHandler() {
@@ -34,9 +34,6 @@ public class KafkaConfiguration {
     @EnableConfigurationProperties(KafkaProperties.class)
     @Profile({"kafka-producer"})
     public class KafkaProducerConfiguration {
-
-        @Autowired
-        private KafkaProperties properties;
 
         @Bean
         public KafkaTemplate<Integer, String> kafkaTemplate() {
@@ -60,71 +57,48 @@ public class KafkaConfiguration {
     @EnableKafka
     @EnableConfigurationProperties(KafkaProperties.class)
     @Profile({"kafka-rongyun-private-message-producer"})
-    public class KafkaRongYunPrivateMessageProducerConfiguration {
+    public class KafkaRongYunPrivateMessageProducerConfiguration extends KafkaRongYunPrivateMessageConfigurationFactory {
 
-        @Autowired
-        private KafkaProperties properties;
 
         @Bean
         public KafkaTemplate<String, RongYunPrivateKafkaMessage> kafkaTemplate() {
-            KafkaTemplate template = new KafkaTemplate<String, RongYunPrivateKafkaMessage>(producerFactory());
-            template.setProducerListener(producerListener());
-            return template;
+            return createKafkaTemplate(properties.buildProducerProperties());
         }
 
         @Bean
         public ProducerListener producerListener() {
-            return new KafkaProducerResultHandler();
+            return createProducerListener();
         }
 
-        @Bean
-        public ProducerFactory<String, RongYunPrivateKafkaMessage> producerFactory() {
-            return new DefaultKafkaProducerFactory(properties.buildProducerProperties());
-        }
     }
-
 
     @Configuration
     @EnableKafka
     @EnableConfigurationProperties(KafkaProperties.class)
     @Profile({"kafka-rongyun-group-message-producer"})
-    public class KafkaRongYunGroupMessageProducerConfiguration {
-
-        @Autowired
-        private KafkaProperties properties;
+    public class KafkaRongYunGroupMessageProducerConfiguration extends KafkaRongYunGroupMessageConfigurationFactory {
 
         @Bean
         public KafkaTemplate<String, RongYunGroupKafkaMessage> kafkaTemplate() {
-            KafkaTemplate template = new KafkaTemplate<String, RongYunGroupKafkaMessage>(producerFactory());
-            template.setProducerListener(producerListener());
-            return template;
+            return createKafkaTemplate(properties.buildProducerProperties());
         }
 
         @Bean
         public ProducerListener producerListener() {
-            return new KafkaProducerResultHandler();
+            return createProducerListener();
         }
 
-        @Bean
-        public ProducerFactory<String, RongYunGroupKafkaMessage> producerFactory() {
-            return new DefaultKafkaProducerFactory(properties.buildProducerProperties());
-        }
     }
 
     @Configuration
     @EnableKafka
     @EnableConfigurationProperties(KafkaProperties.class)
     @Profile({"kafka-rongyun-system-message-producer"})
-    public class KafkaRongYunSystemMessageProducerConfiguration {
-
-        @Autowired
-        private KafkaProperties properties;
+    public class KafkaRongYunSystemMessageProducerConfiguration extends KafkaRongYunSystemMessageConfigurationFactory {
 
         @Bean
         public KafkaTemplate<String, RongYunSystemKafkaMessage> kafkaTemplate() {
-            KafkaTemplate template = new KafkaTemplate<String, RongYunSystemKafkaMessage>(producerFactory());
-            template.setProducerListener(producerListener());
-            return template;
+            return createKafkaTemplate(properties.buildProducerProperties());
         }
 
         @Bean
@@ -132,10 +106,6 @@ public class KafkaConfiguration {
             return new KafkaProducerResultHandler();
         }
 
-        @Bean
-        public ProducerFactory<String, RongYunSystemKafkaMessage> producerFactory() {
-            return new DefaultKafkaProducerFactory(properties.buildProducerProperties());
-        }
     }
 
     @Configuration
@@ -143,9 +113,6 @@ public class KafkaConfiguration {
     @EnableConfigurationProperties(KafkaProperties.class)
     @Profile({"kafka-consumer"})
     public class KafkaConsumerConfiguration {
-
-        @Autowired
-        private KafkaProperties properties;
 
         @Bean
         public ConsumerFactory<Object, Object> consumerFactory() {
@@ -175,53 +142,38 @@ public class KafkaConfiguration {
     @EnableKafka
     @EnableConfigurationProperties(KafkaProperties.class)
     @Profile({"kafka-rongyun-private-message-consumer"})
-    public class KafkaRongYunPrivateMessageConsumerConfiguration {
-
-        @Autowired
-        private KafkaProperties properties;
-
-        @Bean
-        public ConsumerFactory<String, RongYunPrivateKafkaMessage> consumerFactory() {
-            return new DefaultKafkaConsumerFactory<>(
-                    properties.buildConsumerProperties(),
-                    new StringDeserializer(),
-                    new JsonDeserializer<>(RongYunPrivateKafkaMessage.class));
-        }
+    public class KafkaRongYunPrivateMessageConsumerConfiguration extends KafkaRongYunPrivateMessageConfigurationFactory{
 
         @Bean
         public ConcurrentKafkaListenerContainerFactory<String, RongYunPrivateKafkaMessage> kafkaListenerContainerFactory() {
-            ConcurrentKafkaListenerContainerFactory<String, RongYunPrivateKafkaMessage> factory =
-                    new ConcurrentKafkaListenerContainerFactory<>();
-            factory.setConsumerFactory(consumerFactory());
-            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
-            return factory;
+            return createKafkaListenerContainerFactory(properties.buildConsumerProperties());
         }
+
+//        @Bean
+//        public KafkaMessageListenerContainer demoListenerContainer() {
+//            ContainerProperties properties = new ContainerProperties("topic.quick.bean");
+//            properties.setGroupId("bean");
+//            properties.setClientId("paranora");
+//            properties.setMessageListener(new AcknowledgingMessageListener<String,RongYunPrivateKafkaMessage>() {
+//                @Override
+//                public void onMessage(ConsumerRecord<String, RongYunPrivateKafkaMessage> data, Acknowledgment acknowledgment) {
+//
+//                }
+//            });
+//
+//            return new KafkaMessageListenerContainer(consumerFactory(), properties);
+//        }
     }
 
     @Configuration
     @EnableKafka
     @EnableConfigurationProperties(KafkaProperties.class)
     @Profile({"kafka-rongyun-group-message-consumer"})
-    public class KafkaRongYunGroupMessageConsumerConfiguration {
-
-        @Autowired
-        private KafkaProperties properties;
-
-        @Bean
-        public ConsumerFactory<String, RongYunGroupKafkaMessage> consumerFactory() {
-            return new DefaultKafkaConsumerFactory<>(
-                    properties.buildConsumerProperties(),
-                    new StringDeserializer(),
-                    new JsonDeserializer<>(RongYunGroupKafkaMessage.class));
-        }
+    public class KafkaRongYunGroupMessageConsumerConfiguration extends KafkaRongYunGroupMessageConfigurationFactory{
 
         @Bean
         public ConcurrentKafkaListenerContainerFactory<String, RongYunGroupKafkaMessage> kafkaListenerContainerFactory() {
-            ConcurrentKafkaListenerContainerFactory<String, RongYunGroupKafkaMessage> factory =
-                    new ConcurrentKafkaListenerContainerFactory<>();
-            factory.setConsumerFactory(consumerFactory());
-            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
-            return factory;
+            return createKafkaListenerContainerFactory(properties.buildConsumerProperties());
         }
     }
 
@@ -230,26 +182,11 @@ public class KafkaConfiguration {
     @EnableKafka
     @EnableConfigurationProperties(KafkaProperties.class)
     @Profile({"kafka-rongyun-system-message-consumer"})
-    public class KafkaRongYunSystemMessageConsumerConfiguration {
-
-        @Autowired
-        private KafkaProperties properties;
-
-        @Bean
-        public ConsumerFactory<String, RongYunSystemKafkaMessage> consumerFactory() {
-            return new DefaultKafkaConsumerFactory<>(
-                    properties.buildConsumerProperties(),
-                    new StringDeserializer(),
-                    new JsonDeserializer<>(RongYunPrivateKafkaMessage.class));
-        }
+    public class KafkaRongYunSystemMessageConsumerConfiguration extends KafkaRongYunSystemMessageConfigurationFactory{
 
         @Bean
         public ConcurrentKafkaListenerContainerFactory<String, RongYunSystemKafkaMessage> kafkaListenerContainerFactory() {
-            ConcurrentKafkaListenerContainerFactory<String, RongYunSystemKafkaMessage> factory =
-                    new ConcurrentKafkaListenerContainerFactory<>();
-            factory.setConsumerFactory(consumerFactory());
-            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
-            return factory;
+            return createKafkaListenerContainerFactory(properties.buildConsumerProperties());
         }
     }
 }
