@@ -1,5 +1,6 @@
 package org.paranora.sms.configuration;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.paranora.sms.entity.RongYunGroupKafkaMessage;
 import org.paranora.sms.entity.RongYunPrivateKafkaMessage;
 import org.paranora.sms.entity.RongYunSystemKafkaMessage;
@@ -13,8 +14,11 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
+import org.springframework.kafka.listener.AcknowledgingMessageListener;
 import org.springframework.kafka.listener.ConsumerAwareListenerErrorHandler;
 import org.springframework.kafka.listener.ContainerProperties;
+import org.springframework.kafka.listener.KafkaMessageListenerContainer;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.ProducerListener;
 
 @Configuration
@@ -151,17 +155,18 @@ public class KafkaConfiguration {
 
 //        @Bean
 //        public KafkaMessageListenerContainer demoListenerContainer() {
-//            ContainerProperties properties = new ContainerProperties("topic.quick.bean");
-//            properties.setGroupId("bean");
-//            properties.setClientId("paranora");
-//            properties.setMessageListener(new AcknowledgingMessageListener<String,RongYunPrivateKafkaMessage>() {
+//            ContainerProperties containerProperties = new ContainerProperties("topic.quick.bean");
+//            containerProperties.setGroupId("bean");
+//            containerProperties.setClientId("paranora");
+//            containerProperties.setMessageListener(new AcknowledgingMessageListener<String,RongYunPrivateKafkaMessage>() {
+//
 //                @Override
 //                public void onMessage(ConsumerRecord<String, RongYunPrivateKafkaMessage> data, Acknowledgment acknowledgment) {
 //
 //                }
 //            });
 //
-//            return new KafkaMessageListenerContainer(consumerFactory(), properties);
+//            return new KafkaMessageListenerContainer(createConsumerFactory(properties.buildConsumerProperties()), containerProperties);
 //        }
     }
 

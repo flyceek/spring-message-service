@@ -4,6 +4,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
 import org.springframework.kafka.listener.ContainerProperties;
+import org.springframework.kafka.listener.MessageListener;
 import org.springframework.kafka.support.ProducerListener;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
@@ -43,4 +44,8 @@ public abstract class KafkaConfigurationFactoryAbs<TK extends Object, TV extends
         return factory;
     }
 
+    @Override
+    public MessageListener<TK, TV> createMessageListener(String clientId, String groupId, String topic) {
+        return null;
+    }
 }
