@@ -22,7 +22,8 @@ public class RongYunKafkaGroupMessageFetcher extends RongYunKafkaMessageFetcher<
         RongYunMessage rongyunMessageContent = new RongYunMessage(message.getObjectName(),message.getContent());
         GroupMessage groupMessage = new GroupMessage()
                 .setSenderId(message.getSenderId())
-                .setTargetId(message.getReceiverIds())
+                .setTargetId(new String[]{message.getGroupId()})
+                .setToUserId(message.getReceiverIds())
                 .setObjectName(message.getObjectName())
                 .setContent(rongyunMessageContent)
                 .setPushContent(message.getIosPushContent())

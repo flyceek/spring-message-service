@@ -2,7 +2,6 @@ package org.paranora.sms.rest;
 
 
 import org.paranora.sms.entity.RongYunGroupKafkaMessage;
-import org.paranora.sms.entity.RongYunPrivateKafkaMessage;
 import org.paranora.sms.entity.dto.RestfulResponse;
 import org.paranora.sms.service.MessageService;
 import org.slf4j.Logger;
