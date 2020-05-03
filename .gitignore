@@ -43,6 +43,7 @@ target/
 ## SVN
 .svn
 catalina.base_IS_UNDEFINED
+AA_LOG_BASE_DIR_IS_UNDEFINED
 
 ## rebel
 rebel-remote.xml
