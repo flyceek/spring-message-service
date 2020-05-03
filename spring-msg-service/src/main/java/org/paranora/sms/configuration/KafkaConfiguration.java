@@ -1,6 +1,5 @@
 package org.paranora.sms.configuration;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.paranora.sms.entity.RongYunGroupKafkaMessage;
 import org.paranora.sms.entity.RongYunPrivateKafkaMessage;
 import org.paranora.sms.entity.RongYunSystemKafkaMessage;
@@ -14,11 +13,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
-import org.springframework.kafka.listener.AcknowledgingMessageListener;
 import org.springframework.kafka.listener.ConsumerAwareListenerErrorHandler;
 import org.springframework.kafka.listener.ContainerProperties;
-import org.springframework.kafka.listener.KafkaMessageListenerContainer;
-import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.ProducerListener;
 
 @Configuration
@@ -40,20 +36,8 @@ public class KafkaConfiguration {
     public class KafkaProducerConfiguration {
 
         @Bean
-        public KafkaTemplate<Integer, String> kafkaTemplate() {
-            KafkaTemplate template = new KafkaTemplate<Integer, String>(producerFactory());
-            template.setProducerListener(producerListener());
-            return template;
-        }
-
-        @Bean
         public ProducerListener producerListener() {
             return new KafkaProducerResultHandler();
-        }
-
-        @Bean
-        public ProducerFactory<Integer, String> producerFactory() {
-            return new DefaultKafkaProducerFactory(properties.buildProducerProperties());
         }
     }
 
@@ -63,15 +47,9 @@ public class KafkaConfiguration {
     @Profile({"kafka-rongyun-private-message-producer"})
     public class KafkaRongYunPrivateMessageProducerConfiguration extends KafkaRongYunPrivateMessageConfigurationFactory {
 
-
         @Bean
         public KafkaTemplate<String, RongYunPrivateKafkaMessage> kafkaTemplate() {
             return createKafkaTemplate(properties.buildProducerProperties());
-        }
-
-        @Bean
-        public ProducerListener producerListener() {
-            return createProducerListener();
         }
 
     }
@@ -86,12 +64,6 @@ public class KafkaConfiguration {
         public KafkaTemplate<String, RongYunGroupKafkaMessage> kafkaTemplate() {
             return createKafkaTemplate(properties.buildProducerProperties());
         }
-
-        @Bean
-        public ProducerListener producerListener() {
-            return createProducerListener();
-        }
-
     }
 
     @Configuration
@@ -104,12 +76,6 @@ public class KafkaConfiguration {
         public KafkaTemplate<String, RongYunSystemKafkaMessage> kafkaTemplate() {
             return createKafkaTemplate(properties.buildProducerProperties());
         }
-
-        @Bean
-        public ProducerListener producerListener() {
-            return new KafkaProducerResultHandler();
-        }
-
     }
 
     @Configuration

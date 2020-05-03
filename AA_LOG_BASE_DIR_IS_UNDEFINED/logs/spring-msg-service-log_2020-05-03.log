@@ -1,0 +1,11 @@
+2020-05-03 03:04:18,304 DEBUG [kafka-producer-network-thread | producer-1] org.apache.kafka.common.metrics.Metrics [Metrics.java : 416] Added sensor with name node-1.bytes-sent
+2020-05-03 03:04:18,488 DEBUG [kafka-producer-network-thread | producer-1] org.apache.kafka.common.metrics.Metrics [Metrics.java : 416] Added sensor with name node-1.bytes-received
+2020-05-03 03:04:18,489 DEBUG [kafka-producer-network-thread | producer-1] org.apache.kafka.common.metrics.Metrics [Metrics.java : 416] Added sensor with name node-1.latency
+2020-05-03 06:27:04,632 DEBUG [kafka-producer-network-thread | producer-1] org.apache.kafka.common.metrics.Metrics [Metrics.java : 416] Added sensor with name node-3.bytes-sent
+2020-05-03 06:27:04,657 DEBUG [kafka-producer-network-thread | producer-1] org.apache.kafka.common.metrics.Metrics [Metrics.java : 416] Added sensor with name node-3.bytes-received
+2020-05-03 06:27:04,658 DEBUG [kafka-producer-network-thread | producer-1] org.apache.kafka.common.metrics.Metrics [Metrics.java : 416] Added sensor with name node-3.latency
+2020-05-03 18:41:01,921 DEBUG [SpringContextShutdownHook] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext [AbstractApplicationContext.java : 1005] Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@13e547a9, started on Sat May 02 23:28:14 CST 2020
+2020-05-03 18:41:01,933 DEBUG [SpringContextShutdownHook] org.springframework.core.env.PropertySourcesPropertyResolver [PropertySourcesPropertyResolver.java : 115] Found key 'spring.liveBeansView.mbeanDomain' in PropertySource 'systemProperties' with value of type String
+2020-05-03 18:41:01,986 DEBUG [SpringContextShutdownHook] org.springframework.context.support.DefaultLifecycleProcessor [DefaultLifecycleProcessor.java : 369] Stopping beans in phase 2147483547
+2020-05-03 18:41:01,991 DEBUG [SpringContextShutdownHook] org.springframework.context.support.DefaultLifecycleProcessor [DefaultLifecycleProcessor.java : 242] Bean 'org.springframework.kafka.config.internalKafkaListenerEndpointRegistry' completed its stop procedure
+2020-05-03 18:41:01,996 INFO [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java : 218] Shutting down ExecutorService 'applicationTaskExecutor'

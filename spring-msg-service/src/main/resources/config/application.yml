@@ -1,10 +1,10 @@
 spring:
   profiles:
-    active: kafka,kafka-rongyun-private-message-producer,kafka-rongyun-private-message-service,rongyun
+    active: kafka,kafka-producer,kafka-rongyun-private-message-producer,kafka-rongyun-private-message-service,rongyun
 
 #spring:
 #  profiles:
-#    active: kafka,kafka-rongyun-group-message-producer,kafka-rongyun-group-message-service,rongyun
+#    active: kafka,kafka-producer,kafka-rongyun-group-message-producer,kafka-rongyun-group-message-service,rongyun
 
 #spring:
 #  profiles:
