@@ -5,16 +5,16 @@ import com.alibaba.fastjson.JSON;
 import java.io.Serializable;
 
 public abstract class RongYunKafkaMessage extends KafkaMessage implements Serializable {
-    private String objectName;
-    private String channelType;
-    private String source;
-    private String iosPushData;
-    private String iosPushContent;
-    private Integer iosCount;
-    private Integer isIncludeSender;
-    private Integer IsPersisted;
-    private Integer iosContentAvailable;
-    private Integer verifyBlacklist;
+    protected String objectName;
+    protected String channelType;
+    protected String source;
+    protected String iosPushData;
+    protected String iosPushContent;
+    protected Integer iosCount;
+    protected Integer isIncludeSender;
+    protected Integer IsPersisted;
+    protected Integer iosContentAvailable;
+    protected Integer verifyBlacklist;
 
     public RongYunKafkaMessage(){
         isIncludeSender=1;

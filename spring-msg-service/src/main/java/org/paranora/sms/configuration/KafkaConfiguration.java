@@ -84,10 +84,10 @@ public class KafkaConfiguration {
     @Profile({"kafka-consumer"})
     public class KafkaConsumerConfiguration {
 
-        @Bean
-        public ConsumerFactory<Object, Object> consumerFactory() {
-            return new DefaultKafkaConsumerFactory<>(properties.buildConsumerProperties());
-        }
+//        @Bean
+//        public ConsumerFactory<Object, Object> consumerFactory() {
+//            return new DefaultKafkaConsumerFactory<>(properties.buildConsumerProperties());
+//        }
 
 //        @Bean
 //        @ConditionalOnBean(ConcurrentKafkaListenerContainerFactoryConfigurer.class)
@@ -98,13 +98,13 @@ public class KafkaConfiguration {
 //            return factory;
 //        }
 
-        @Bean
-        public ConcurrentKafkaListenerContainerFactory<Integer, String> kafkaListenerContainerFactory() {
-            ConcurrentKafkaListenerContainerFactory<Integer, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-            factory.setConsumerFactory(consumerFactory());
-            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
-            return factory;
-        }
+//        @Bean
+//        public ConcurrentKafkaListenerContainerFactory<Integer, String> kafkaListenerContainerFactory() {
+//            ConcurrentKafkaListenerContainerFactory<Integer, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
+//            factory.setConsumerFactory(consumerFactory());
+//            factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
+//            return factory;
+//        }
 
     }
 

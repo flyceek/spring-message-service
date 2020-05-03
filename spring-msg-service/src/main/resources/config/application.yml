@@ -1,14 +1,14 @@
-spring:
-  profiles:
-    active: kafka,kafka-producer,kafka-rongyun-private-message-producer,kafka-rongyun-private-message-service,rongyun
+#spring:
+#  profiles:
+#    active: kafka,kafka-producer,kafka-rongyun-private-message-producer,kafka-rongyun-private-message-service,rongyun
 
 #spring:
 #  profiles:
 #    active: kafka,kafka-producer,kafka-rongyun-group-message-producer,kafka-rongyun-group-message-service,rongyun
 
-#spring:
-#  profiles:
-#    active: kafka,kafka-rongyun-private-message-consumer,kafka-rongyun-private-message-service,rongyun
+spring:
+  profiles:
+    active: kafka,kafka-rongyun-private-message-consumer,kafka-rongyun-private-message-service,rongyun
 
 rongyun:
   appKey: ${AA_RONGYUN_APPKEY:y745wfm8yoxyv}
