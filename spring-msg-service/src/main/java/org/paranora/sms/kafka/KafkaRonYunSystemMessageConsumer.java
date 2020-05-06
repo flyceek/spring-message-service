@@ -20,7 +20,7 @@ public class KafkaRonYunSystemMessageConsumer {
     @Autowired
     private MessageService rongYunKafkaSystemMessageService;
 
-    @KafkaListener(id="${AA_KAFKA_CLIENT_ID:paranora}",topics = "paranora-rongyun-system-message", groupId = "paranora-rongyun-system-message-group",errorHandler = "kafkaConsumerAwareListenerErrorHandler",containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(id="${AA_KAFKA_CLIENT_ID:paranora}",topics = "${AA_KAFKA_TOPIC:paranora-rongyun-system-message}", groupId = "${AA_KAFKA_GROUP_ID:paranora-rongyun-system-message-consumer-group}",errorHandler = "kafkaConsumerAwareListenerErrorHandler",containerFactory = "kafkaListenerContainerFactory")
     public void listen(@Payload RongYunSystemKafkaMessage msg,
                                    @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key,
                                    @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition,
