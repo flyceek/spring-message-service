@@ -30,31 +30,31 @@ public class RonYunConfiguration {
     }
 
     @Configuration
-    @Profile({"kafka-rongyun-private-message-service"})
+//    @Profile({"kafka-rongyun-private-message-service"})
     public class RonYunKafkaPrivateMessageConfiguration extends RongYunKafkaPrivateMessageServiceFactory {
 
         @Bean
-        public MessageService rongYunKafkaPrivateMessageService(KafkaTemplate<String, RongYunPrivateKafkaMessage> kafkaTemplate) {
+        public MessageService<RongYunPrivateKafkaMessage> rongYunKafkaPrivateMessageService(KafkaTemplate<String, RongYunPrivateKafkaMessage> kafkaTemplate) {
             return createMessageService(kafkaTemplate,rongCloud());
         }
     }
 
     @Configuration
-    @Profile({"kafka-rongyun-group-message-service"})
+//    @Profile({"kafka-rongyun-group-message-service"})
     public class RonYunKafkaGroupMessageConfiguration extends RongYunKafkaGroupMessageServiceFactory {
 
         @Bean
-        public MessageService rongYunKafkaGroupMessageService(KafkaTemplate<String, RongYunGroupKafkaMessage> kafkaTemplate) {
+        public MessageService<RongYunGroupKafkaMessage> rongYunKafkaGroupMessageService(KafkaTemplate<String, RongYunGroupKafkaMessage> kafkaTemplate) {
             return createMessageService(kafkaTemplate,rongCloud());
         }
     }
 
     @Configuration
-    @Profile({"kafka-rongyun-system-message-service"})
+//    @Profile({"kafka-rongyun-system-message-service"})
     public class RonYunKafkaSystemMessageConfiguration extends RongYunKafkaSystemMessageServiceFactory{
 
         @Bean
-        public MessageService rongYunKafkaSystemMessageService(KafkaTemplate<String, RongYunSystemKafkaMessage> kafkaTemplate) {
+        public MessageService<RongYunSystemKafkaMessage> rongYunKafkaSystemMessageService(KafkaTemplate<String, RongYunSystemKafkaMessage> kafkaTemplate) {
             return createMessageService(kafkaTemplate,rongCloud());
         }
     }

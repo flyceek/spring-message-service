@@ -9,5 +9,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rongyun/message/group")
 public class RongYunGroupMessageRest extends RongYunMessageRest<RongYunGroupKafkaMessage> {
 
-
 }

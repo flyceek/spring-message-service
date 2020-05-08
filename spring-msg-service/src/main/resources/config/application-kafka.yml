@@ -5,7 +5,7 @@ server:
 
 spring:
   kafka:
-    bootstrap-servers: ${AA_KAFKA_SERVERS:10.28.19.161:9092,10.28.19.161:9083}
+    bootstrap-servers: ${AA_KAFKA_SERVERS:10.4.99.4:9092,10.28.19.196:9082}
     producer:
       batch-size: ${AA_KAFKA_BATCH_SIZE:1}
       retries: ${AA_KAFKA_RETRY:1}

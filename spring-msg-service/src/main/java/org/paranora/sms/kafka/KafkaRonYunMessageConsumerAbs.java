@@ -1,6 +1,6 @@
 package org.paranora.sms.kafka;
 
-import org.paranora.sms.entity.Message;
+import org.paranora.sms.entity.RongYunKafkaMessage;
 import org.paranora.sms.service.MessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,12 +11,12 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 
-public abstract class KafkaRonYunMessageConsumerAbs<T extends Message> implements KafkaRonYunMessageConsumer<T> {
+public abstract class KafkaRonYunMessageConsumerAbs<T extends RongYunKafkaMessage> implements KafkaRonYunMessageConsumer<T> {
 
     private static final Logger log = LoggerFactory.getLogger(KafkaRonYunMessageConsumerAbs.class);
 
     @Autowired
-    private MessageService messageService;
+    private MessageService<T> messageService;
 
     @Override
     @KafkaListener(id="${AA_KAFKA_CLIENT_ID}",topics = "${AA_KAFKA_TOPIC}", groupId = "${AA_KAFKA_GROUP_ID}",errorHandler = "kafkaConsumerAwareListenerErrorHandler",containerFactory = "kafkaListenerContainerFactory")

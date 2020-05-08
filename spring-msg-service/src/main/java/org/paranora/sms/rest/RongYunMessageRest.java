@@ -15,7 +15,7 @@ public abstract class RongYunMessageRest<T extends RongYunKafkaMessage> {
     private static final Logger log = LoggerFactory.getLogger(RongYunMessageRest.class);
 
     @Autowired
-    protected MessageService<T> messageService;
+    private MessageService<T> messageService;
 
     @PostMapping("send")
     public RestfulResponse send(@RequestBody T message) {
