@@ -3,9 +3,9 @@ package org.paranora.sms.entity;
 import java.io.Serializable;
 
 public abstract class KafkaMessage extends Message implements Serializable {
-    private String topic;
-    private Integer partition;
-    private String key;
+    protected String topic;
+    protected Integer partition;
+    protected String key;
 
     public KafkaMessage(){
         partition=0;

@@ -20,6 +20,7 @@ public abstract class RongYunKafkaMessage extends KafkaMessage implements Serial
         isIncludeSender=1;
         IsPersisted=1;
         verifyBlacklist=0;
+        this.time=System.currentTimeMillis();
     }
 
     public Integer getVerifyBlacklist() {

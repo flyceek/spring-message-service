@@ -3,10 +3,10 @@ package org.paranora.sms.entity;
 import java.io.Serializable;
 
 public abstract class Message implements Serializable {
-    private String senderId;
-    private String[] receiverIds;
-    private String content;
-    private String time;
+    protected String senderId;
+    protected String[] receiverIds;
+    protected String content;
+    protected long time;
 
     public String getSenderId() {
         return senderId;
@@ -32,11 +32,11 @@ public abstract class Message implements Serializable {
         this.content = content;
     }
 
-    public String getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 }
