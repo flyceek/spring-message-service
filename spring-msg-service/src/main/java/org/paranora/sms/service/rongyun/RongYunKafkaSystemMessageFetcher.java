@@ -26,7 +26,7 @@ public class RongYunKafkaSystemMessageFetcher extends RongYunKafkaMessageFetcher
                 .setContent(rongyunMessageContent)
                 .setPushContent(message.getIosPushContent())
                 .setPushData(message.getIosPushData())
-                .setIsPersisted(message.getIsPersisted())
+                .setIsPersisted(0)
                 .setIsCounted(message.getIosCount())
                 .setContentAvailable(message.getIosContentAvailable());
 

@@ -14,13 +14,13 @@
 #  profiles:
 #    active: kafka,kafka-consumer,kafka-rongyun-private-message-consumer,rongyun
 
-#spring:
-#  profiles:
-#    active: kafka,kafka-consumer,${AA_KAFKA_CONSUMER_TYPE:null},rongyun
-
 spring:
   profiles:
-    active: kafka,kafka-producer,rongyun
+    active: kafka,kafka-consumer,${AA_KAFKA_CONSUMER_TYPE:null},rongyun
+
+#spring:
+#  profiles:
+#    active: kafka,kafka-producer,rongyun
 
 
 rongyun:
