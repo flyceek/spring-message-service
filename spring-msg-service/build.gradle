@@ -1,27 +1,27 @@
-apply plugin: 'idea'
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-buildscript {
-    ext {
-        springDependencyManagementPluginVersion = '1.0.11.RELEASE'
-        springBootGradlePluginVersion = '2.4.3'
-    }
-    repositories {
-        jcenter()
-        mavenLocal()
-        mavenCentral()
-        maven { url "http://repo.spring.io/release" }
-        maven { url "http://repo.spring.io/milestone" }
-        maven { url "http://repo.spring.io/snapshot" }
-        maven { url "https://plugins.gradle.org/m2/" }
-    }
-    dependencies {
-        classpath "io.spring.gradle:dependency-management-plugin: ${springDependencyManagementPluginVersion}"
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootGradlePluginVersion}"
-    }
-}
+//apply plugin: 'idea'
+//apply plugin: 'java'
+//apply plugin: 'org.springframework.boot'
+//apply plugin: 'io.spring.dependency-management'
+//
+//buildscript {
+//    ext {
+//        springDependencyManagementPluginVersion = '1.0.11.RELEASE'
+//        springBootGradlePluginVersion = '2.4.3'
+//    }
+//    repositories {
+//        jcenter()
+//        mavenLocal()
+//        mavenCentral()
+//        maven { url "http://repo.spring.io/release" }
+//        maven { url "http://repo.spring.io/milestone" }
+//        maven { url "http://repo.spring.io/snapshot" }
+//        maven { url "https://plugins.gradle.org/m2/" }
+//    }
+//    dependencies {
+//        classpath "io.spring.gradle:dependency-management-plugin: ${springDependencyManagementPluginVersion}"
+//        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootGradlePluginVersion}"
+//    }
+//}
 
 dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: springBootVersion

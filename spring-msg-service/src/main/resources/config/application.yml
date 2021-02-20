@@ -24,5 +24,5 @@ spring:
 
 
 rongyun:
-  appKey: ${AA_RONGYUN_APPKEY:yrttwfmgyoxyv}
-  appSecret: ${AA_RONGYUN_APPSECRET:yyuPwuksdfhaa}
+  appKey: ${AA_RONGYUN_APPKEY:123321}
+  appSecret: ${AA_RONGYUN_APPSECRET:123321}
