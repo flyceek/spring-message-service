@@ -1,0 +1,28 @@
+#spring:
+#  profiles:
+#    active: kafka,kafka-producer,kafka-rongyun-private-message-producer,kafka-rongyun-private-message-service,rongyun
+
+#spring:
+#  profiles:
+#    active: kafka,kafka-producer,kafka-rongyun-group-message-producer,kafka-rongyun-group-message-service,rongyun
+
+#spring:
+#  profiles:
+#    active: kafka,kafka-rongyun-private-message-consumer,kafka-rongyun-private-message-service,rongyun
+
+#spring:
+#  profiles:
+#    active: kafka,kafka-consumer,kafka-rongyun-private-message-consumer,rongyun
+
+spring:
+  profiles:
+    active: kafka,kafka-consumer,${AA_KAFKA_CONSUMER_TYPE:null},rongyun
+
+#spring:
+#  profiles:
+#    active: kafka,kafka-producer,rongyun
+
+
+rongyun:
+  appKey: ${AA_RONGYUN_APPKEY:yrttwfmgyoxyv}
+  appSecret: ${AA_RONGYUN_APPSECRET:yyuPwuksdfhaa}

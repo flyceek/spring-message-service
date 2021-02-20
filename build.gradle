@@ -17,20 +17,8 @@ subprojects {
     buildDir = 'out'
 
     ext {
-        springVersion = '5.1.4.RELEASE'
-        springBootVersion = '2.1.6.RELEASE'
-        springCloudVersion = '2.1.1.RELEASE'
-        springCloudNewVersion = '2.1.2.RELEASE'
-        springFoxVersion = '2.9.2'
-        fastjsonVersion = '1.2.56'
-        jacksonVersion = '2.9.8'
-        logbackVersion = '1.2.3'
-        slf4jVersion = '1.7.25'
-        redissonVersion = '3.10.4'
-        jedisVersion = '3.0.1'
-        lettuceVersion = '5.1.5.RELEASE'
-        junitVersion = '4.12'
         sentinelVersion = '1.6.2'
+        rongcloudSdkVersion='3.2.2'
     }
 
     repositories {

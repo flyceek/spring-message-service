@@ -2,7 +2,6 @@ package org.paranora.sms;
 
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
@@ -39,7 +38,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
                 , ThymeleafAutoConfiguration.class
                 , JmsAutoConfiguration.class
                 , ErrorMvcAutoConfiguration.class
-                , ElasticsearchAutoConfiguration.class
                 , ElasticsearchDataAutoConfiguration.class
                 , ElasticsearchRepositoriesAutoConfiguration.class
                 , MongoDataAutoConfiguration.class
