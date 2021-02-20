@@ -24,13 +24,13 @@ public class RongYunKafkaPrivateMessageFetcher extends RongYunKafkaMessageFetche
                 .setTargetId(message.getReceiverIds())
                 .setObjectName(message.getObjectName())
                 .setContent(rongyunMessageContent)
-                .setPushContent(message.getIosPushContent())
-                .setPushData(message.getIosPushData())
+                .setPushContent(message.getPushContent())
+                .setPushData(message.getPushData())
                 .setVerifyBlacklist(message.getVerifyBlacklist())
                 .setIsPersisted(message.getIsPersisted())
-                .setIsCounted(message.getIosCount())
+                .setIsCounted(message.getIsCounted())
                 .setIsIncludeSender(message.getIsIncludeSender())
-                .setContentAvailable(message.getIosContentAvailable());
+                .setContentAvailable(message.getContentAvailable());
         ResponseResult result = rongCloud.message.msgPrivate.send(rongyunPrivateMessage);
 
         log.info(String.format("\r\nsend rongyun private message: \r\n %s \r\nresult : \r\n%s",messageJson,result.toString()));

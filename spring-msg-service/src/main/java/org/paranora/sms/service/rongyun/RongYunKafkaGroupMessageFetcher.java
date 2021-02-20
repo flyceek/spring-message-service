@@ -26,11 +26,11 @@ public class RongYunKafkaGroupMessageFetcher extends RongYunKafkaMessageFetcher<
                 .setToUserId(message.getReceiverIds())
                 .setObjectName(message.getObjectName())
                 .setContent(rongyunMessageContent)
-                .setPushContent(message.getIosPushContent())
-                .setPushData(message.getIosPushData())
+                .setPushContent(message.getPushContent())
+                .setPushData(message.getPushData())
                 .setIsPersisted(message.getIsPersisted())
                 .setIsIncludeSender(message.getIsIncludeSender())
-                .setContentAvailable(message.getIosContentAvailable());
+                .setContentAvailable(message.getContentAvailable());
         ResponseResult result = null;
         if (null != message.getReceiverIds() && message.getReceiverIds().length > 0) {
             result = rongCloud.message.group.sendDirection(groupMessage);

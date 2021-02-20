@@ -24,11 +24,11 @@ public class RongYunKafkaSystemMessageFetcher extends RongYunKafkaMessageFetcher
                 .setTargetId(message.getReceiverIds())
                 .setObjectName(message.getObjectName())
                 .setContent(rongyunMessageContent)
-                .setPushContent(message.getIosPushContent())
-                .setPushData(message.getIosPushData())
+                .setPushContent(message.getPushContent())
+                .setPushData(message.getPushData())
                 .setIsPersisted(0)
-                .setIsCounted(message.getIosCount())
-                .setContentAvailable(message.getIosContentAvailable());
+                .setIsCounted(message.getIsCounted())
+                .setContentAvailable(message.getContentAvailable());
 
         ResponseResult result = rongCloud.message.system.send(systemMessage);
         log.info(String.format("\r\nsend rongyun system message: \r\n %s \r\nresult : \r\n%s",messageJson,result.toString()));
