@@ -18,7 +18,6 @@ subprojects {
 
     ext {
         sentinelVersion = '1.6.2'
-        rongcloudSdkVersion='3.2.2'
     }
 
     repositories {

@@ -30,7 +30,10 @@ public class RongYunKafkaPrivateMessageFetcher extends RongYunKafkaMessageFetche
                 .setIsPersisted(message.getIsPersisted())
                 .setIsCounted(message.getIsCounted())
                 .setIsIncludeSender(message.getIsIncludeSender())
-                .setContentAvailable(message.getContentAvailable());
+                .setContentAvailable(message.getContentAvailable())
+                .setExpansion(message.getExpansion())
+                .setDisablePush(message.getDisablePush())
+                .setPushExt(message.getPushExt());
         ResponseResult result = rongCloud.message.msgPrivate.send(rongyunPrivateMessage);
 
         log.info(String.format("\r\nsend rongyun private message: \r\n %s \r\nresult : \r\n%s",messageJson,result.toString()));

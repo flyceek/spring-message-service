@@ -8,4 +8,5 @@ public class RongYunPrivateKafkaMessage extends RongYunKafkaMessage {
         this.partition=0;
         this.channelType="PRIVATE";
     }
+
 }

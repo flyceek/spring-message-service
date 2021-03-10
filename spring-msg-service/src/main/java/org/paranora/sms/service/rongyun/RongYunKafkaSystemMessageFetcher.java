@@ -28,7 +28,9 @@ public class RongYunKafkaSystemMessageFetcher extends RongYunKafkaMessageFetcher
                 .setPushData(message.getPushData())
                 .setIsPersisted(0)
                 .setIsCounted(message.getIsCounted())
-                .setContentAvailable(message.getContentAvailable());
+                .setContentAvailable(message.getContentAvailable())
+                .setDisablePush(message.getDisablePush())
+                .setPushExt(message.getPushExt());
 
         ResponseResult result = rongCloud.message.system.send(systemMessage);
         log.info(String.format("\r\nsend rongyun system message: \r\n %s \r\nresult : \r\n%s",messageJson,result.toString()));
