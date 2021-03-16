@@ -10,6 +10,7 @@ public class RongYunGroupKafkaMessage extends RongYunKafkaMessage {
         this.channelType="GROUP";
     }
 
+
     public String getGroupId() {
         return groupId;
     }

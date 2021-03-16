@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 
 import java.io.Serializable;
 
-
 public abstract class RongYunKafkaMessage extends KafkaMessage implements Serializable {
     protected String objectName;
     protected String channelType;
@@ -13,7 +12,7 @@ public abstract class RongYunKafkaMessage extends KafkaMessage implements Serial
     protected String pushContent;
     protected Integer isCounted;
     protected Integer isIncludeSender;
-    protected Integer IsPersisted;
+    protected Integer isPersisted;
     protected Integer contentAvailable;
     protected Integer verifyBlacklist;
     protected Boolean expansion;
@@ -22,7 +21,7 @@ public abstract class RongYunKafkaMessage extends KafkaMessage implements Serial
 
     public RongYunKafkaMessage(){
         isIncludeSender=1;
-        IsPersisted=1;
+        isPersisted=1;
         verifyBlacklist=0;
         this.time=System.currentTimeMillis();
     }
@@ -32,29 +31,6 @@ public abstract class RongYunKafkaMessage extends KafkaMessage implements Serial
         return JSON.toJSONString(this);
     }
 
-    public Boolean getExpansion() {
-        return expansion;
-    }
-
-    public void setExpansion(Boolean expansion) {
-        this.expansion = expansion;
-    }
-
-    public Boolean getDisablePush() {
-        return disablePush;
-    }
-
-    public void setDisablePush(Boolean disablePush) {
-        this.disablePush = disablePush;
-    }
-
-    public String getPushExt() {
-        return pushExt;
-    }
-
-    public void setPushExt(String pushExt) {
-        this.pushExt = pushExt;
-    }
 
     public String getObjectName() {
         return objectName;
@@ -113,11 +89,11 @@ public abstract class RongYunKafkaMessage extends KafkaMessage implements Serial
     }
 
     public Integer getIsPersisted() {
-        return IsPersisted;
+        return isPersisted;
     }
 
     public void setIsPersisted(Integer isPersisted) {
-        IsPersisted = isPersisted;
+        this.isPersisted = isPersisted;
     }
 
     public Integer getContentAvailable() {
@@ -134,5 +110,29 @@ public abstract class RongYunKafkaMessage extends KafkaMessage implements Serial
 
     public void setVerifyBlacklist(Integer verifyBlacklist) {
         this.verifyBlacklist = verifyBlacklist;
+    }
+
+    public Boolean getExpansion() {
+        return expansion;
+    }
+
+    public void setExpansion(Boolean expansion) {
+        this.expansion = expansion;
+    }
+
+    public Boolean getDisablePush() {
+        return disablePush;
+    }
+
+    public void setDisablePush(Boolean disablePush) {
+        this.disablePush = disablePush;
+    }
+
+    public String getPushExt() {
+        return pushExt;
+    }
+
+    public void setPushExt(String pushExt) {
+        this.pushExt = pushExt;
     }
 }

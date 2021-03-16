@@ -1,6 +1,7 @@
 package org.paranora.sms;
 
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration;
@@ -48,6 +49,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class Application {
 
     public static void main(final String[] args) {
-        new SpringApplicationBuilder(Application.class).run(args);
+        SpringApplication.run(Application.class, args);
     }
 }

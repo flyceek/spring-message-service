@@ -9,20 +9,20 @@ public abstract class KafkaMessage extends Message {
         partition=0;
     }
 
-    public Integer getPartition() {
-        return partition;
-    }
-
-    public void setPartition(Integer partition) {
-        this.partition = partition;
-    }
-
     public String getTopic() {
         return topic;
     }
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    public Integer getPartition() {
+        return partition;
+    }
+
+    public void setPartition(Integer partition) {
+        this.partition = partition;
     }
 
     public String getKey() {
