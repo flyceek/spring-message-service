@@ -1,42 +1,78 @@
 apply from: rootProject.file("dependencies.gradle")
 
+buildscript {
+    ext {
+    }
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://nexus.aist.io/nexus/repository/maven-public/" }
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://maven.eveoh.nl/content/repositories/releases" }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://repo.spring.io/plugins-release" }
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        classpath "io.spring.gradle:dependency-management-plugin: $springDependencyManagementPluginVersion"
+        classpath "io.franzbecker:gradle-lombok:1.14"
+    }
+}
+
 allprojects {
 
 }
 
 subprojects {
-    apply plugin: 'idea'
-    apply plugin: 'java'
-    apply plugin: 'maven'
+    apply plugin: "java"
+    apply plugin: "idea"
+    apply plugin: 'io.spring.dependency-management'
     apply plugin: 'maven-publish'
 
-    version = '1.0.1-SNAPSHOT'
-    group = 'org.paranora'
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-    buildDir = 'out'
-
-    ext {
-        sentinelVersion = '1.6.2'
-    }
-
     repositories {
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public"}
-        mavenCentral()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://nexus.aist.io/nexus/repository/maven-public/" }
         mavenLocal()
-
-//        maven { url "http://nexus.aist.io/nexus/repository/maven-public/" }
-//        maven { url "http://central.maven.org/maven2/" }
-//        maven { url "http://repo.spring.io/release" }
-//        maven { url "http://repo.spring.io/milestone" }
-//        maven { url "http://repo.spring.io/snapshot" }
-//        maven { url "https://build.shibboleth.net/nexus/content/repositories/releases/" }
+        mavenCentral()
+        maven { url "https://build.shibboleth.net/nexus/content/repositories/releases" }
+        maven { url "https://build.shibboleth.net/nexus/content/repositories/releases" }
+        maven { url "https://oss.sonatype.org/content/repositories/releases" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url "https://repo.spring.io/plugins-release/" }
+        maven { url "https://dl.bintray.com/uniconiam/maven" }
+        maven { url "https://jitpack.io" }
+//        jcenter()
     }
 
-    dependencies {
-        implementation group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-        annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-        compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    sourceSets {
+        main {
+            java {
+                srcDirs = ["${projectDir}/src/main/java", "${projectDir}/src/main/groovy"]
+
+            }
+            resources {
+                srcDirs = ["${projectDir}/src/main/resources"]
+            }
+        }
+        test {
+            java {
+                srcDirs = ["${projectDir}/src/test/java", "${projectDir}/src/test/groovy"]
+
+            }
+            resources {
+                srcDirs = ["${projectDir}/src/test/resources"]
+            }
+        }
+    }
+
+    compileJava.doLast {
+        def currentTime = java.time.ZonedDateTime.now()
+        jar.manifest {
+            attributes("Implementation-Date": currentTime,
+                    "Created-By": project.group)
+
+        }
     }
 
     publishing {
@@ -82,8 +118,8 @@ subprojects {
                 def snapshotsRepoUrl = "http://nexus.aist.io/nexus/repository/maven-snapshots/"
                 url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
                 credentials {
-                    username 'admin'
-                    password 'admin123'
+                    username '1'
+                    password '1'
                 }
             }
         }
@@ -109,7 +145,17 @@ subprojects {
             }.writeTo("$projectDir/pom.xml")
         }
     }
+
+    dependencyManagement {
+        resolutionStrategy {
+            cacheChangingModulesFor 0, 'seconds'
+        }
+    }
+
+    dependencies {
+        implementation group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+        annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+        compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    }
+
 }
-
-
-

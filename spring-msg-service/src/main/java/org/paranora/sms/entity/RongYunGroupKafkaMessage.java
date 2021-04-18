@@ -1,6 +1,12 @@
 package org.paranora.sms.entity;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class RongYunGroupKafkaMessage extends RongYunKafkaMessage {
+
     private String groupId;
 
     public RongYunGroupKafkaMessage() {
@@ -8,14 +14,5 @@ public class RongYunGroupKafkaMessage extends RongYunKafkaMessage {
         this.key="rongyun-group-msg";
         this.partition=0;
         this.channelType="GROUP";
-    }
-
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
     }
 }

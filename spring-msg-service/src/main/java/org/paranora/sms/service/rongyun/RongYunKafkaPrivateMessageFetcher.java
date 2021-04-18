@@ -28,6 +28,7 @@ public class RongYunKafkaPrivateMessageFetcher extends RongYunKafkaMessageFetche
                 .setPushData(message.getPushData())
                 .setVerifyBlacklist(message.getVerifyBlacklist())
                 .setIsPersisted(message.getIsPersisted())
+                .setCount(message.getCount().toString())
                 .setIsCounted(message.getIsCounted())
                 .setIsIncludeSender(message.getIsIncludeSender())
                 .setContentAvailable(message.getContentAvailable())
