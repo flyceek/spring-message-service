@@ -1,6 +1,12 @@
 apply plugin: 'org.springframework.boot'
 
+jar {
+    enabled = true
+}
+
 dependencies {
+    compile project(":spring-msg-entity")
+
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: springBootVersion
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
 
