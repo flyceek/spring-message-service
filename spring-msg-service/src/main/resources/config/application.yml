@@ -17,6 +17,25 @@
 spring:
   profiles:
     active: kafka,kafka-consumer,${AA_KAFKA_CONSUMER_TYPE:null},rongyun
+  cloud:
+    consul:
+      host: 10.28.19.194
+      port: 8500
+      enabled: false
+      discovery:
+        enabled: true
+        register: true
+        port: ${local.port}
+        tags: urlprefix-/${spring.application.name}
+        hostname: ${spring.application.name}
+        ip-address: ${local.ip}
+        service-name: ${spring.application.name}
+        instance-id: ${spring.application.name}:${local.ip}:${local.port}
+        prefer-ip-address: true
+        health-check-interval: 10s
+        health-check-critical-timeout: 10s
+        health-check-timeout: 10s
+        health-check-url: http://${local.ip}:${local.port}/actuator/health
 
 #spring:
 #  profiles:

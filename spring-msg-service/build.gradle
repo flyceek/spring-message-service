@@ -9,6 +9,8 @@ dependencies {
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: springBootVersion
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-consul-discovery', version: springCloudConsulVersion
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: springBootVersion
 
     implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: kafkaSpringVersion
 
